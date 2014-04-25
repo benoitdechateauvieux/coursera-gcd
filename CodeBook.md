@@ -9,9 +9,12 @@ In this project, we focus on how are we organising the data to address the quest
 
 ## Study design
 The data used for this analysis represent data collected from the accelerometers from the Samsung Galaxy S smartphone for the study
+
 *Human Activity Recognition Using Smartphones Dataset*
 *Version 1.0*
+
 by
+
 *Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, Luca Oneto*
 *Smartlab - Non Linear Complex Systems Laboratory*
 *DITEN - Universite degli Studi di Genova*
