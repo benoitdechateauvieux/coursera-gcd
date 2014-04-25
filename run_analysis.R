@@ -1,7 +1,6 @@
-# Objectif: how are we organising the data to address the question
-#We assume that files have been downloard and extracted to a local directory.
-#For the purpose of this analysis, mean was construed as those variables....
-#Since all the data of avg_data are averages, it's not included in variable names
+#We assume that data files have been downloard and extracted to a local directory named "data" in the working directory
+library(reshape)
+library(reshape2)
 
 activity_labels     <- read.table(file="data/activity_labels.txt")
 features            <- read.table(file="data/features.txt", as.is=T)
@@ -28,8 +27,12 @@ tidy_train          <- cbind(subject_train, y_train, x_train)
 
 #All data
 all_data            <- rbind(tidy_test, tidy_train)
-mean_and_std        <- all_data[, c(1,2,grep("mean\\(\\)|std\\(\\)", names(tidy_data)))]
+mean_and_std        <- all_data[, c(1,2,grep("mean\\(\\)|std\\(\\)", names(all_data)))]
 melted              <- melt(data=mean_and_std, id.vars=c(1,2))
 avg_data            <- dcast(melted, subject+activity~variable, mean)
+
+#rename columns
+names(avg_data)     <- c("Subject","Activity","TimeBodyAccMeanX","TimeBodyAccMeanY","TimeBodyAccMeanZ","TimeBodyAccStdX","TimeBodyAccStdY","TimeBodyAccStdZ","TimeGravityAccMeanX","TimeGravityAccMeanY","TimeGravityAccMeanZ","TimeGravityAccStdX","TimeGravityAccStdY","TimeGravityAccStdZ","TimeBodyAccJerkMeanX","TimeBodyAccJerkMeanY","TimeBodyAccJerkMeanZ","TimeBodyAccJerkStdX","TimeBodyAccJerkStdY","TimeBodyAccJerkStdZ","TimeBodyGyroMeanX","TimeBodyGyroMeanY","TimeBodyGyroMeanZ","TimeBodyGyroStdX","TimeBodyGyroStdY","TimeBodyGyroStdZ","TimeBodyGyroJerkMeanX","TimeBodyGyroJerkMeanY","TimeBodyGyroJerkMeanZ","TimeBodyGyroJerkStdX","TimeBodyGyroJerkStdY","TimeBodyGyroJerkStdZ","TimeBodyAccMagMean","TimeBodyAccMagStd","TimeGravityAccMagMean","TimeGravityAccMagStd","TimeBodyAccJerkMagMean","TimeBodyAccJerkMagStd","TimeBodyGyroMagMean","TimeBodyGyroMagStd","TimeBodyGyroJerkMagMean","TimeBodyGyroJerkMagStd","FrequencyBodyAccMeanX","FrequencyBodyAccMeanY","FrequencyBodyAccMeanZ","FrequencyBodyAccStdX","FrequencyBodyAccStdY","FrequencyBodyAccStdZ","FrequencyBodyAccJerkMeanX","FrequencyBodyAccJerkMeanY","FrequencyBodyAccJerkMeanZ","FrequencyBodyAccJerkStdX","FrequencyBodyAccJerkStdY","FrequencyBodyAccJerkStdZ","FrequencyBodyGyroMeanX","FrequencyBodyGyroMeanY","FrequencyBodyGyroMeanZ","FrequencyBodyGyroStdX","FrequencyBodyGyroStdY","FrequencyBodyGyroStdZ","FrequencyBodyAccMagMean","FrequencyBodyAccMagStd","FrequencyBodyBodyAccJerkMagMean","FrequencyBodyBodyAccJerkMagStd","FrequencyBodyBodyGyroMagMean","FrequencyBodyBodyGyroMagStd","FrequencyBodyBodyGyroJerkMagMean","FrequencyBodyBodyGyroJerkMagStd")
+
 #write.csv(avg_data, file="avg_data.csv")
 print(avg_data)
