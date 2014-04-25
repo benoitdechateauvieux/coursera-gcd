@@ -14,3 +14,9 @@ The script run_analysis.R can be executed with the following command
 ```R
 source('run_analysis.R')
 ```
+
+##Codebook
+This repository also contains a [codebook](https://github.com/benoitdechateauvieux/coursera-gcd/blob/master/CodeBook.md) that gives
+* Information about the variables
+* Description of how the data was collected
+* Information about the experimental study design
